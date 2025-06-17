@@ -1,14 +1,23 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemaps
+Sitemap: https://yojanamints.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin or sensitive areas (if any in future)
+# Disallow: /admin/
+
+# Allow all pages for better SEO
+Allow: /eligibility-checker
+Allow: /subsidy-estimator
+Allow: /scheme-comparison
+Allow: /scheme-tracker
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /faq
