@@ -46,6 +46,11 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-gray-900 mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
+                <Link to="/disclaimer" className="text-sm text-gray-600 hover:text-blue-600">
+                  Disclaimer
+                </Link>
+              </li>
+              <li>
                 <Link to="/privacy" className="text-sm text-gray-600 hover:text-blue-600">
                   Privacy Policy
                 </Link>
@@ -65,13 +70,20 @@ const Footer = () => {
 
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-4">Contact</h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 mb-4">
               Email: contact@yojanamints.com
             </p>
-            <div className="mt-4">
-              <Link to="/about" className="text-sm text-gray-600 hover:text-blue-600">
-                About Us
-              </Link>
+            <div className="space-y-2">
+              <div>
+                <Link to="/contact" className="text-sm text-gray-600 hover:text-blue-600">
+                  Contact Us
+                </Link>
+              </div>
+              <div>
+                <Link to="/about" className="text-sm text-gray-600 hover:text-blue-600">
+                  About Us
+                </Link>
+              </div>
             </div>
           </div>
         </div>
