@@ -1,6 +1,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /music/
+Disallow: /category/
 
 # Sitemaps
 Sitemap: https://yojanamints.com/sitemap.xml
