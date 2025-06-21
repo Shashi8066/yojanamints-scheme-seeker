@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -131,174 +132,194 @@ const SchemeTracker = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Live Government Schemes Tracker
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Stay updated on active government schemes currently open for applications. 
-          Find deadlines, eligibility criteria, and direct links to apply.
-        </p>
-      </div>
+    <>
+      <Helmet>
+        <title>Live Government Schemes Tracker - Active Yojana Applications | YojanaMints</title>
+        <meta name="description" content="Stay updated on active government schemes currently open for applications. Find deadlines, eligibility criteria, and direct links to apply." />
+        <meta name="keywords" content="live schemes, active government schemes, scheme tracker, yojana deadlines, scheme applications, government notifications" />
+        <meta name="author" content="YojanaMints" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yojanamints.com/scheme-tracker" />
+        
+        <meta property="og:title" content="Live Government Schemes Tracker - Active Yojana Applications" />
+        <meta property="og:description" content="Stay updated on active government schemes currently open for applications with deadlines and details." />
+        <meta property="og:url" content="https://yojanamints.com/scheme-tracker" />
+        <meta property="og:type" content="website" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Live Government Schemes Tracker" />
+        <meta name="twitter:description" content="Track active government schemes and application deadlines in real-time." />
+      </Helmet>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Live Government Schemes Tracker
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Stay updated on active government schemes currently open for applications. 
+            Find deadlines, eligibility criteria, and direct links to apply.
+          </p>
+        </div>
 
-      {/* Filters */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <Filter className="w-5 h-5 mr-2" />
-            Filter Schemes
-          </CardTitle>
-          <CardDescription>
-            Use filters to find schemes relevant to your needs
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Search Schemes
-              </label>
-              <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search by name or keyword..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
+        {/* Filters */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Filter className="w-5 h-5 mr-2" />
+              Filter Schemes
+            </CardTitle>
+            <CardDescription>
+              Use filters to find schemes relevant to your needs
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Search Schemes
+                </label>
+                <div className="relative">
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input
+                    placeholder="Search by name or keyword..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Filter by Sector
+                </label>
+                <Select value={sectorFilter} onValueChange={setSectorFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select sector" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {sectors.map((sector) => (
+                      <SelectItem key={sector} value={sector}>{sector}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Filter by State
+                </label>
+                <Select value={stateFilter} onValueChange={setStateFilter}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {states.map((state) => (
+                      <SelectItem key={state} value={state}>{state}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Filter by Sector
-              </label>
-              <Select value={sectorFilter} onValueChange={setSectorFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select sector" />
-                </SelectTrigger>
-                <SelectContent>
-                  {sectors.map((sector) => (
-                    <SelectItem key={sector} value={sector}>{sector}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          </CardContent>
+        </Card>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Filter by State
-              </label>
-              <Select value={stateFilter} onValueChange={setStateFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select state" />
-                </SelectTrigger>
-                <SelectContent>
-                  {states.map((state) => (
-                    <SelectItem key={state} value={state}>{state}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+        {/* Results Count */}
+        <div className="mb-6">
+          <p className="text-gray-600">
+            Showing {filteredSchemes.length} of {liveSchemes.length} active schemes
+          </p>
+        </div>
 
-      {/* Results Count */}
-      <div className="mb-6">
-        <p className="text-gray-600">
-          Showing {filteredSchemes.length} of {liveSchemes.length} active schemes
-        </p>
-      </div>
-
-      {/* Schemes List */}
-      <div className="space-y-6">
-        {filteredSchemes.map((scheme) => (
-          <Card key={scheme.id} className="hover:shadow-lg transition-shadow duration-200">
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                  <CardTitle className="text-xl text-gray-900">{scheme.name}</CardTitle>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {scheme.state}
-                    </div>
-                    <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-1" />
-                      {scheme.sector}
+        {/* Schemes List */}
+        <div className="space-y-6">
+          {filteredSchemes.map((scheme) => (
+            <Card key={scheme.id} className="hover:shadow-lg transition-shadow duration-200">
+              <CardHeader>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div>
+                    <CardTitle className="text-xl text-gray-900">{scheme.name}</CardTitle>
+                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        {scheme.state}
+                      </div>
+                      <div className="flex items-center">
+                        <Users className="w-4 h-4 mr-1" />
+                        {scheme.sector}
+                      </div>
                     </div>
                   </div>
+                  <Badge className={getStatusColor(scheme.status)}>
+                    {scheme.status}
+                  </Badge>
                 </div>
-                <Badge className={getStatusColor(scheme.status)}>
-                  {scheme.status}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-700 mb-4">{scheme.description}</p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-sm">
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2 text-green-600" />
-                  <span className="font-medium">Start:</span>
-                  <span className="ml-1">{new Date(scheme.startDate).toLocaleDateString('en-IN')}</span>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4">{scheme.description}</p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-sm">
+                  <div className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-2 text-green-600" />
+                    <span className="font-medium">Start:</span>
+                    <span className="ml-1">{new Date(scheme.startDate).toLocaleDateString('en-IN')}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="w-4 h-4 mr-2 text-red-600" />
+                    <span className="font-medium">End:</span>
+                    <span className="ml-1">{new Date(scheme.endDate).toLocaleDateString('en-IN')}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">For:</span>
+                    <span className="ml-1">{scheme.beneficiaries}</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2 text-red-600" />
-                  <span className="font-medium">End:</span>
-                  <span className="ml-1">{new Date(scheme.endDate).toLocaleDateString('en-IN')}</span>
-                </div>
-                <div className="flex items-center">
-                  <Users className="w-4 h-4 mr-2 text-blue-600" />
-                  <span className="font-medium">For:</span>
-                  <span className="ml-1">{scheme.beneficiaries}</span>
-                </div>
-              </div>
 
-              <Button asChild className="w-full">
-                <a href={scheme.link} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Apply Now
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {filteredSchemes.length === 0 && (
-        <div className="text-center py-12">
-          <Clock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-xl font-medium text-gray-900 mb-2">No Schemes Found</h3>
-          <p className="text-gray-600 mb-4">
-            No schemes match your current filter criteria. Try adjusting your filters or search terms.
-          </p>
-          <Button variant="outline" onClick={() => {
-            setSectorFilter("");
-            setStateFilter("");
-            setSearchTerm("");
-          }}>
-            Clear All Filters
-          </Button>
+                <Button asChild className="w-full">
+                  <a href={scheme.link} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Apply Now
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      )}
 
-      {/* Information Note */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
-        <div className="flex items-start">
-          <Clock className="w-5 h-5 text-blue-600 mt-0.5 mr-3" />
-          <div>
-            <h3 className="text-lg font-semibold text-blue-900 mb-2">Stay Updated</h3>
-            <p className="text-blue-800">
-              Scheme information is updated regularly based on official government announcements. 
-              Application deadlines and eligibility criteria may change. Always verify details on the official portal before applying.
+        {filteredSchemes.length === 0 && (
+          <div className="text-center py-12">
+            <Clock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-medium text-gray-900 mb-2">No Schemes Found</h3>
+            <p className="text-gray-600 mb-4">
+              No schemes match your current filter criteria. Try adjusting your filters or search terms.
             </p>
+            <Button variant="outline" onClick={() => {
+              setSectorFilter("");
+              setStateFilter("");
+              setSearchTerm("");
+            }}>
+              Clear All Filters
+            </Button>
+          </div>
+        )}
+
+        {/* Information Note */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
+          <div className="flex items-start">
+            <Clock className="w-5 h-5 text-blue-600 mt-0.5 mr-3" />
+            <div>
+              <h3 className="text-lg font-semibold text-blue-900 mb-2">Stay Updated</h3>
+              <p className="text-blue-800">
+                Scheme information is updated regularly based on official government announcements. 
+                Application deadlines and eligibility criteria may change. Always verify details on the official portal before applying.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

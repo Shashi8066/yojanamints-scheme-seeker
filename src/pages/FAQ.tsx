@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, Shield, Calculator, Users, AlertTriangle, ExternalLink } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const FAQ = () => {
   const faqs = [
@@ -106,105 +106,125 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Find answers to common questions about YojanaMints, our tools, and how we help you navigate government schemes.
-        </p>
-      </div>
+    <>
+      <Helmet>
+        <title>FAQ - Frequently Asked Questions About YojanaMints</title>
+        <meta name="description" content="Find answers to common questions about YojanaMints, our government scheme tools, privacy practices, and how we help navigate citizen services." />
+        <meta name="keywords" content="FAQ, frequently asked questions, YojanaMints help, government scheme questions, eligibility checker FAQ" />
+        <meta name="author" content="YojanaMints" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yojanamints.com/faq" />
+        
+        <meta property="og:title" content="FAQ - Frequently Asked Questions About YojanaMints" />
+        <meta property="og:description" content="Find answers to common questions about YojanaMints, our tools, and how we help you navigate government schemes." />
+        <meta property="og:url" content="https://yojanamints.com/faq" />
+        <meta property="og:type" content="website" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="YojanaMints FAQ - Common Questions" />
+        <meta name="twitter:description" content="Get answers to frequently asked questions about our government scheme tools." />
+      </Helmet>
+      
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Find answers to common questions about YojanaMints, our tools, and how we help you navigate government schemes.
+          </p>
+        </div>
 
-      <div className="space-y-8">
-        {faqs.map((category, categoryIndex) => {
-          const IconComponent = category.icon;
-          return (
-            <Card key={categoryIndex}>
-              <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <IconComponent className="w-5 h-5 mr-2 text-blue-600" />
-                  {category.category}
-                </CardTitle>
-                <CardDescription>
-                  Common questions about {category.category.toLowerCase()}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Accordion type="single" collapsible className="w-full">
-                  {category.questions.map((faq, faqIndex) => (
-                    <AccordionItem key={faqIndex} value={`${categoryIndex}-${faqIndex}`}>
-                      <AccordionTrigger className="text-left">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-gray-700">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+        <div className="space-y-8">
+          {faqs.map((category, categoryIndex) => {
+            const IconComponent = category.icon;
+            return (
+              <Card key={categoryIndex}>
+                <CardHeader>
+                  <CardTitle className="flex items-center text-xl">
+                    <IconComponent className="w-5 h-5 mr-2 text-blue-600" />
+                    {category.category}
+                  </CardTitle>
+                  <CardDescription>
+                    Common questions about {category.category.toLowerCase()}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Accordion type="single" collapsible className="w-full">
+                    {category.questions.map((faq, faqIndex) => (
+                      <AccordionItem key={faqIndex} value={`${categoryIndex}-${faqIndex}`}>
+                        <AccordionTrigger className="text-left">
+                          {faq.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-gray-700">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
 
-      {/* Quick Help Section */}
-      <Card className="mt-12">
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <AlertTriangle className="w-5 h-5 mr-2 text-yellow-600" />
-            Still Need Help?
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-blue-50 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-900 mb-2">Contact Support</h3>
-              <p className="text-blue-800 text-sm mb-3">
-                Can't find your answer? Send us a message and we'll help you within 24-48 hours.
-              </p>
-              <a 
-                href="/contact" 
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm"
-              >
-                Contact Us
-                <ExternalLink className="w-4 h-4 ml-1" />
-              </a>
-            </div>
-            
-            <div className="bg-green-50 rounded-lg p-4">
-              <h3 className="font-semibold text-green-900 mb-2">Official Resources</h3>
-              <p className="text-green-800 text-sm mb-3">
-                For official scheme information and applications, always visit government portals directly.
-              </p>
-              <a 
-                href="https://india.gov.in" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium text-sm"
-              >
-                India.gov.in
-                <ExternalLink className="w-4 h-4 ml-1" />
-              </a>
-            </div>
-          </div>
-          
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <div className="flex items-start">
-              <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5 mr-2" />
-              <div>
-                <p className="text-sm text-yellow-800 font-medium">Remember</p>
-                <p className="text-sm text-yellow-700 mt-1">
-                  YojanaMints provides guidance only. For official applications, eligibility verification, 
-                  and scheme enrollment, always use official government portals and follow their procedures.
+        {/* Quick Help Section */}
+        <Card className="mt-12">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <AlertTriangle className="w-5 h-5 mr-2 text-yellow-600" />
+              Still Need Help?
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h3 className="font-semibold text-blue-900 mb-2">Contact Support</h3>
+                <p className="text-blue-800 text-sm mb-3">
+                  Can't find your answer? Send us a message and we'll help you within 24-48 hours.
                 </p>
+                <a 
+                  href="/contact" 
+                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm"
+                >
+                  Contact Us
+                  <ExternalLink className="w-4 h-4 ml-1" />
+                </a>
+              </div>
+              
+              <div className="bg-green-50 rounded-lg p-4">
+                <h3 className="font-semibold text-green-900 mb-2">Official Resources</h3>
+                <p className="text-green-800 text-sm mb-3">
+                  For official scheme information and applications, always visit government portals directly.
+                </p>
+                <a 
+                  href="https://india.gov.in" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-green-600 hover:text-green-700 font-medium text-sm"
+                >
+                  India.gov.in
+                  <ExternalLink className="w-4 h-4 ml-1" />
+                </a>
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+            
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="flex items-start">
+                <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5 mr-2" />
+                <div>
+                  <p className="text-sm text-yellow-800 font-medium">Remember</p>
+                  <p className="text-sm text-yellow-700 mt-1">
+                    YojanaMints provides guidance only. For official applications, eligibility verification, 
+                    and scheme enrollment, always use official government portals and follow their procedures.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 };
 
